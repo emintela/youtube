@@ -9,35 +9,30 @@ import notification_icon from '../../assets/notification.png'
 import profile_icon from '../../assets/jack.png'
 
 const Navbar = (props) => {
-    const setSidebar = props.setSidebar
+    const setSidebar = props.setSidebar;
   
     return (
-
-    <nav className="flex-div"> 
-        <div className="nav-left flex-div">
-            <img src={menu_icon} alt="menu icon" onClick={()=>setSidebar(prev=>prev===false?true:false)}></img>
-            <img src={logo} alt="logo"></img>
-            
-        </div>
-        <div className="nav-middle flex-div">
-            <div className="search-box flex-div">
-                     <input type="text" name="search" placeholder="Search ... ">
-                    
-                    </input>
-                    <img src={search} alt="search"></img>
+        <nav className="flex-div"> 
+            <div className="nav-left flex-div">
+                <img src={menu_icon} alt="menu icon" onClick={()=>setSidebar(prev=>!prev)}></img>
+                <img src={logo} alt="logo"></img>
             </div>
-            
-        </div>
 
-        <div className="nav-right" flex-div>
-            <img src={uplaod_icon} alt="uplaod"></img>
-            <img src={more_icon} alt="more"></img>
-            <img src={notification_icon} alt="notification"></img>
-            <img src={profile_icon} alt="profile" className='user-icon'></img>
+            <div className="nav-middle flex-div">
+                <div className="search-box flex-div">
+                    <input type="text" name="search" placeholder="Search ... " />
+                    <img src={search} alt="search" />
+                </div>
+            </div>
 
-        </div>
-    </nav>
-  )
+            <div className="nav-right flex-div">
+                <img src={uplaod_icon} alt="upload" />
+                <img src={more_icon} alt="more" />
+                <img src={notification_icon} alt="notification" />
+                <img src={profile_icon} alt="profile" className="user-icon" />
+            </div>
+        </nav>
+    )
 }
 
-export default Navbar
+export default Navbar;

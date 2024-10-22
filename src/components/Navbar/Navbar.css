@@ -1,47 +1,57 @@
-nav{
+nav {
+    display: flex; /* Make the nav a flex container */
     padding: 10px 2%;
     justify-content: space-between;
     box-shadow: 0 0 10px rgba(0,0,0,0.2);
     background: #fff;
-    position:sticky;
-    top:0;
-    z-index:10;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    align-items: center; /* Center items vertically */
 }
 
-.nav-left .menu-icon{
-    width: 22px;
-    margin-right: 25px;
-    padding: 10px;
+.nav-left,
+.nav-middle,
+.nav-right {
+    display: flex; /* Make the sub-containers flex containers */
+    align-items: center; /* Vertically align items */
 }
 
-.nav-left .logo{
-    width: 130px;
+.nav-middle {
+    flex: 0.85; /* Take up the available space */
 }
 
-.nav-middle .search-box{
+.nav-middle .search-box {
+    display: flex; /* Flexbox for search-box to align input and image */
     border: 1px solid #ccc;
     margin-right: 15px;
     padding: 8px 12px;
     border-radius: 25px;
+    flex: 0.85;
+    align-items: center;
 }
 
-.nav-middle .search-box .input{
-    width: 400px;
+.nav-middle .search-box input {
+    flex: 1; /* Make the input take up available space */
     border: 0;
     outline: 0;
-    background:transparent;
+    background: transparent;
+    padding: 0 10px; /* Add some padding for spacing from the image */
+    min-width: 0; /* Prevent flexbox shrinking issues */
 }
-
-.nav-middle .search-box img{
+.nav-middle .search-box img {
     width: 15px;
+    flex-shrink: 0; /* Prevent the image from shrinking */
+   
 }
 
-.nav-right img{
+.nav-right img {
     width: 25px;
     margin-right: 25px;
+    
 }
 
-.nav-right .user-icon{
+.nav-right .user-icon {
     width: 35px;
     border-radius: 50%;
 }
