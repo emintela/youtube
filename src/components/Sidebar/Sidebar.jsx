@@ -26,20 +26,20 @@ const Sidebar = (props) => {
 
     <div className={ sidebar===true ? "sidebar" : "small-sidebar" }>
       <div className='shortcut-links'>
-        <div className={`side-link ${category === 0 ? "active":""}`} onClick={()=>setCategory(0)}>
+        <div className={`side-link ${category === 0 ? "active":""}`} onClick={()=>setCategory("Congo RDC Francais Lingala Politique Congolaise")}>
           <img src={home} alt="" /><p>Home</p>
 
         </div>
-        <div className={`side-link ${category===20 ? "active" :""}`} onClick={()=>setCategory(20)}>
-          <img src={game} alt="" /><p>Gaming</p>
+        <div className={`side-link ${category===20 ? "active" :""}`} onClick={()=>setCategory("Politique RDC politique congolaise lingala francais")}>
+          <img src={game} alt="" /><p>Politique</p>
 
         </div>
-        <div className={`side-link ${category===2 ? "active" :""}`} onClick={()=>setCategory(2)}>
-          <img src={automobiles} alt="" /><p>Automobiles</p>
+        <div className={`side-link ${category===2 ? "active" :""}`} onClick={()=>setCategory("Sports RD Congo footbal leopards basketbal judo ")}>
+          <img src={automobiles} alt="" /><p>Sports</p>
 
         </div>
-        <div className={`side-link ${category===17 ? "active" :""}`} onClick={()=>setCategory(17)}>
-          <img src={sports} alt="" /><p>Sports</p>
+        <div className={`side-link ${category===17 ? "active" :""}`} onClick={()=>setCategory("musique rd congo rumba ngwasuma fally ferree koffi jb werra ")}>
+          <img src={sports} alt="" /><p>Musique</p>
 
         </div>
         <div className={`side-link ${category===24 ? "active" :""}`} onClick={()=>setCategory(24)}>
