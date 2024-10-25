@@ -6,7 +6,7 @@ import Feed from '../../components/Feed/Feed'
 const Home = (props) => {
 
   // variables to set the category clicked by user and use it on different components
-  const [category,setCategory]= useState("Congo RDC Francais Lingala Politique Congolaise")
+  const [category,setCategory]= useState("Congo RDC Lingala Politique Congolaise")
   
   
   return (

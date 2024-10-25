@@ -7,17 +7,47 @@ import share from '../../assets/share.png';
 import save from '../../assets/save.png'; // Corrected import
 import jack from '../../assets/jack.png';
 import user_profile from '../../assets/user_profile.jpg'; // Corrected variable name
+import { useParams } from 'react-router-dom';
+import moment from 'moment';
 
-const PlayVideo = () => {
+const PlayVideo = (props) => {
+  
+ const videoId = props.videoId
+ const channelTitle = props.channelTitle
+ const description = props.description
+ const title = props.title
+ const publishedAt = props.publishedAt
+ const commentCount = props.commentCount
+ const favoriteCount = props.favoriteCount
+ const likeCount = props.likeCount
+ const viewCount = props.viewCount
+ const channelDescription= props.channelDescription
+ const subscriberCount= props.subscriberCount
+ const channelLogo = props.channelLogo
+
+  
   return (
     <div className="play-video">
-      <video src={video1} controls autoPlay muted></video>
-      <h3>Best YouTube Channel to Learn Web Development</h3>
+       
+      
+      <iframe
+        width="100%"
+        height="500"
+        src={`https://www.youtube.com/embed/${videoId}`}
+        title={title}
+        frameBorder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowFullScreen
+      ></iframe>
+      
+     
+      <h3>{title}</h3>
+     
       <div className="play-video-info">
-        <p>1523 views &bull; 2 days ago...</p>
+        <p>{viewCount} views &bull; {moment(publishedAt).fromNow()}...</p>
         <div>
-          <span><img src={like} alt="like"/>125</span>
-          <span><img src={dislike} alt="dislike"/>2</span>
+          <span><img src={like} alt="like"/>{likeCount}</span>
+          <span><img src={dislike} alt="dislike"/>{}</span>
           <span><img src={share} alt="share"/>Share</span>
           <span><img src={save} alt="save"/>Save</span>
         </div>
@@ -25,20 +55,19 @@ const PlayVideo = () => {
       <hr />
       <div className="publisher">
         <div>
-            <img src={jack} alt="publisher"/>
+        <img src={channelLogo ? channelLogo : jack} alt={channelTitle} />
           
-            <p>GreatestStack</p>
-             <span>1M Subscribers</span>
+            <p>{channelTitle}</p>
+             <span>{subscriberCount} Subscribers</span>
         </div>
           
             <button>Subscribe</button>
         </div>
 
         <div className="video-description">
-          <p>GreatestStack, the channel that makes Web Development Easier</p>
-          <p>Subscribe to learn more and more about Web Development and other skills in the field of tech..</p>
-          <hr/>
-          <h4>132 Comments</h4>
+          <p>{description.slice(0,400)}...</p>
+           <hr/>
+          <h4>{commentCount} Comments</h4>
           <div className="comment">
             <img src={user_profile} alt="profile"/>
             <div>

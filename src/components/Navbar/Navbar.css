@@ -28,6 +28,10 @@ nav {
 .nav-left span{
     color: red;
 }
+
+.nav-left img{
+    margin-right: 6px;
+}
 .nav-middle {
     flex: 0.85; /* Take up the available space */
 }

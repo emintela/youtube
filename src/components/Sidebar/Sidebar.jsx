@@ -26,7 +26,7 @@ const Sidebar = (props) => {
 
     <div className={ sidebar===true ? "sidebar" : "small-sidebar" }>
       <div className='shortcut-links'>
-        <div className={`side-link ${category === 0 ? "active":""}`} onClick={()=>setCategory("Congo RDC Francais Lingala Politique Congolaise")}>
+        <div className={`side-link ${category === 0 ? "active":""}`} onClick={()=>setCategory("Congo RDC  Lingala Politique Congolaise")}>
           <img src={home} alt="" /><p>Home</p>
 
         </div>

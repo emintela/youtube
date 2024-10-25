@@ -9,6 +9,8 @@ import notification_icon from '../../assets/notification.png'
 import profile_icon from '../../assets/jack.png'
 import log2 from '../../assets/log2.png'
 
+
+
 const Navbar = (props) => {
     const setSidebar = props.setSidebar;
   
@@ -16,7 +18,21 @@ const Navbar = (props) => {
         <nav className="flex-div"> 
             <div className="nav-left flex-div">
                 <img src={menu_icon} alt="menu icon" onClick={()=>setSidebar(prev=>!prev)}></img>
-               <img src={log2} alt="logo"></img>
+                <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 97.75 40"
+            width="50"
+            height="40"
+          >
+            <g id="Layer_2" data-name="Layer 2">
+              <g id="Layer_1-2" data-name="Layer 1">
+                <path
+                  fill="#ff0000"
+                  d="M93.8 4.91a12.29 12.29 0 00-8.65-8.68C79.66-4 48.86-4 48.86-4s-30.8 0-36.3 1.77A12.29 12.29 0 003.91 4.91C2.14 10.41 2.14 20 2.14 20s0 9.59 1.77 15.09a12.29 12.29 0 008.65 8.68c5.5 1.77 36.3 1.77 36.3 1.77s30.8 0 36.3-1.77a12.29 12.29 0 008.65-8.68c1.77-5.5 1.77-15.09 1.77-15.09s0-9.59-1.77-15.09zM39.16 28.06V11.94L58.32 20z"
+                />
+              </g>
+            </g>
+          </svg>
                 <h1>Congo<span>Tube !</span></h1>
             </div>
 

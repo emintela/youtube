@@ -1,15 +1,113 @@
-import React from 'react'
-import './Video.css'
-import PlayVideo from '../../components/PlayVideo/PlayVideo'
-import Recommended from '../../components/Recommended/Recommended'
+import React, { useState, useEffect } from 'react';
+import './Video.css';
+import PlayVideo from '../../components/PlayVideo/PlayVideo';
+import Recommended from '../../components/Recommended/Recommended';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
 
 const Video = () => {
+  const { videoId } = useParams();
+  const API_KEY = process.env.REACT_APP_YOUTUBE_API_KEY;
+
+  const [video, setVideo] = useState(null);
+  const [channelId, setChannelId] = useState(null); // Store channel ID
+  const [channelData, setChannelData] = useState(null); // Store channel data
+
+  useEffect(() => {
+    // Fetch video details
+    const fetchVideoDetails = async () => {
+      try {
+        const response = await axios.get('https://www.googleapis.com/youtube/v3/videos', {
+          params: {
+            part: 'snippet,contentDetails,statistics',
+            id: videoId,
+            key: API_KEY,
+          },
+        });
+        const videoData = response.data.items[0];
+        setVideo(videoData);
+        setChannelId(videoData.snippet.channelId); // Store the channel ID for later use
+      } catch (error) {
+        console.error('Error fetching video data:', error);
+      }
+    };
+
+    fetchVideoDetails();
+  }, [videoId, API_KEY]);
+
+  useEffect(() => {
+    if (channelId) {
+      // Fetch channel details after channelId is set
+      const fetchChannelDetails = async () => {
+        try {
+          const response = await axios.get('https://www.googleapis.com/youtube/v3/channels', {
+            params: {
+              part: 'snippet,statistics',
+              id: channelId,
+              key: API_KEY,
+            },
+          });
+          setChannelData(response.data.items[0]); // Set the channel data
+        } catch (error) {
+          console.error('Error fetching channel data:', error);
+        }
+      };
+
+      fetchChannelDetails();
+    }
+  }, [channelId, API_KEY]);
+
+  if (!video) {
+    return <p>Loading video details...</p>;
+  }
+
+  if (!channelData) {
+    return <p>Loading channel details...</p>;
+  }
+
+  // Destructure the video and channel objects
+  const { snippet: videoSnippet, statistics: videoStatistics } = video;
+  const { snippet: channelSnippet, statistics: channelStatistics } = channelData;
+
+  /*
+   Variables about a particular video that can be shared
+   with other components and be reused 
+  */
+  const channelTitle = videoSnippet.channelTitle;
+  const description = videoSnippet.description;
+  const title = videoSnippet.title;
+  const publishedAt = videoSnippet.publishedAt;
+
+  // Video statistics
+  const commentCount = videoStatistics.commentCount;
+  const favoriteCount = videoStatistics.favoriteCount;
+  const likeCount = videoStatistics.likeCount;
+  const viewCount = videoStatistics.viewCount;
+
+  // Channel details
+  const channelDescription = channelSnippet.description;
+  const subscriberCount = channelStatistics.subscriberCount;
+  const channelLogo = channelSnippet.thumbnails.default.url
+
   return (
     <div className='play-container'>
-       <PlayVideo/>
-       <Recommended/>
+      <PlayVideo 
+        videoId={videoId}
+        channelTitle={channelTitle}
+        description={description}
+        title={title}
+        publishedAt={publishedAt}
+        commentCount={commentCount}
+        favoriteCount={favoriteCount}
+        likeCount={likeCount}
+        viewCount={viewCount}
+        channelDescription={channelDescription}
+        subscriberCount={subscriberCount}
+        channelLogo = {channelLogo}
+      />
+      <Recommended />
     </div>
-  )
+  );
 }
 
-export default Video
+export default Video;
