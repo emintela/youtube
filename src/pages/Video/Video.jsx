@@ -10,8 +10,8 @@ const Video = () => {
   const API_KEY = process.env.REACT_APP_YOUTUBE_API_KEY
 
   const [video, setVideo] = useState(null)
-  const [channelId, setChannelId] = useState(null) // Store channel ID
-  const [channelData, setChannelData] = useState(null) // Store channel data
+  const [channelId, setChannelId] = useState(null) // variable to store channel ID
+  const [channelData, setChannelData] = useState(null) // variable to store channel data
   const [comments, setComments] = useState([]) // variables to store comments data
 
   useEffect(() => {
@@ -27,7 +27,7 @@ const Video = () => {
         })
         const videoData = response.data.items[0]
         setVideo(videoData)
-        setChannelId(videoData.snippet.channelId) // Store the channel ID for later use
+        setChannelId(videoData.snippet.channelId) 
       } catch (error) {
         console.error('Error fetching video data:', error)
       }
@@ -38,7 +38,7 @@ const Video = () => {
 
   useEffect(() => {
     if (channelId) {
-      // Fetch channel details after channelId is set
+      // now  channel details can be fetched after channelId is set
       const fetchChannelDetails = async () => {
         try {
           const response = await axios.get('https://www.googleapis.com/youtube/v3/channels', {
@@ -48,7 +48,7 @@ const Video = () => {
               key: API_KEY,
             },
           })
-          setChannelData(response.data.items[0]) // Set the channel data
+          setChannelData(response.data.items[0]) 
         } catch (error) {
           console.error('Error fetching channel data:', error)
         }
@@ -58,9 +58,9 @@ const Video = () => {
     }
   }, [channelId, API_KEY])
 
-  // fetch comments
+ 
   useEffect(() => {
-    // Fetch comments for the video
+    // now  comments for the video can be easily fetched
     const fetchComments = async () => {
       try {
         const response = await axios.get('https://www.googleapis.com/youtube/v3/commentThreads', {
@@ -86,7 +86,7 @@ const Video = () => {
 
   
 
-  // Destructure the video and channel objects
+  // Destructuring the video and channel objects
   const { snippet: videoSnippet, statistics: videoStatistics } = video
   const { snippet: channelSnippet, statistics: channelStatistics } = channelData
 

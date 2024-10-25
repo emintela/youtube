@@ -5,8 +5,8 @@ import Feed from '../../components/Feed/Feed'
 import { useParams } from 'react-router-dom'
 
 const Home = (props) => {
-  const { query } = useParams() // Get the search query from the URL
-  const [category, setCategory] = useState(query || "Congo RDC Lingala Politique Congolaise") // Default category
+  const { query } = useParams() 
+  const [category, setCategory] = useState(query || "Congo RDC Lingala Politique Congolaise") // Default category to some congolese words
 
   // Update category when query changes
   useEffect(() => {
@@ -24,7 +24,7 @@ const Home = (props) => {
       />
       <div className={props.sidebar ? "container" : "large-container"}>
         <Feed 
-          category={category} // Pass category to Feed for search
+          category={category} // here the category can be passed as props to be used by other components
         />
       </div>
     </>
