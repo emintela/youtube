@@ -29,3 +29,25 @@
 .card p{
     font-size: 14px;
 }
+
+@media (max-width: 900px) {
+   
+    .sidebar,
+    .small-sidebar {
+        z-index: 10; 
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        overflow-y: auto;
+        width: 15%; 
+    }
+
+    /* Allow feed to scroll underneath sidebar */
+    .feed {
+        margin-left: 15%; /* Matches sidebar width */
+        padding-bottom: 50px; /* Extra space for bottom bar if applicable */
+    }
+
+   
+}

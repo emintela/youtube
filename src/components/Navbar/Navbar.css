@@ -24,6 +24,25 @@ nav {
     margin-left: 10px;
     height: 26px;
 }
+.nav-left {
+    display: flex;
+    align-items: center;
+    cursor: pointer; /* Add cursor pointer on hover */
+}
+
+.nav-left h1 {
+    color: white;
+    margin-left: 10px;
+    height: 26px;
+}
+
+.nav-left span {
+    color: red;
+}
+
+.nav-left img {
+    margin-right: 6px;
+}
 
 .nav-left span{
     color: red;
@@ -76,4 +95,26 @@ nav {
     color: lightgrey;
     background: radial-gradient(circle at 18.7% 37.8%, rgb(250, 250, 250) 0%, rgb(225, 234, 238) 90%);
    
+}
+.voice-search img{
+    width: 35px;
+    height: 35px;
+    
+}
+
+@media (max-width:900px) {
+    .menu-icon{
+        display: none;
+    }
+    .nav-right img{
+        display:none;
+    }
+    .nav-right .user-icon{
+        display: block;
+        width: 30px;
+    }
+    .logo{
+        width: 89px;
+    }
+    
 }

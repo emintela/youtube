@@ -42,4 +42,51 @@
         </Link>
             
        
-        
+           This code creates a new `YT.Player` object.  
+   - `'player'` refers to the ID of the `div` where the player will be placed.
+   - `height` and `width` set the dimensions of the player.
+   - `videoId` is the ID of the YouTube video you want to embed.
+   - `events` allows you to specify functions to handle events like the player being ready (`onReady`) or the player's state changing (`onStateChange`).
+
+**Important:** Replace `'M7lc1UVf-VE'` with the actual ID of the YouTube video you want to embed. You can find the video ID in the URL of the video on YouTube.
+
+By following these steps, you can embed a YouTube video on your webpage and control it using the YouTube IFrame Player API. I hope this helps!
+
+
+
+Object
+etag
+: 
+"Wy_TarA2SSkF_59rOWeRDC8Pq7E"
+id
+: 
+"13CUv2O4sOM"
+kind
+: 
+"youtube#video"
+snippet
+: 
+categoryId
+: 
+"25"
+channelId
+: 
+"UC25EuGAePOPvPrUA5cmu3dQ"
+channelTitle
+: 
+"africanews (en français)"
+defaultAudioLanguage
+: 
+"fr"
+description
+: 
+"Un contingent de l'armée burundaise est déployé dans l'est de la République démocratique du Congo pour traquer des groupes armés locaux et étrangers récalcitrants au processus de paix voulu par des chefs d’États de la Communauté des États d'Afrique de l'est (EAC), a annoncé l'armée congolaise.\n\nLIRE L’ARTICLE : https://fr.africanews.com/2022/08/15/est-de-la-rdc-larmee-burundaise-rejoint-les-militaires-congolais\n\nAbonnez-vous à notre chaine Youtube https://www.youtube.com/c/africanewsfr?sub_confirmation=1 et recevez chaque jour le meilleur de l’actualité panafricaine.\n\nAfricanews est disponible en Français et en Anglais.\nSite web : fr.africanews.com\nFacebook : https://www.facebook.com/africanews.fr/\nTwitter : https://twitter.com/africanews\n\n#AfNews"
+liveBroadcastContent
+: 
+"none"
+localized
+: 
+{title: "Est de la RDC : l'armée burundaise rejoint les militaires congolais", description: "Un contingent de l'armée burundaise est déployé da…Twitter : https://twitter.com/africanews\n\n#AfNews"}
+publishedAt
+: 
+

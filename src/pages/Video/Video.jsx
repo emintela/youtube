@@ -1,18 +1,18 @@
-import React, { useState, useEffect } from 'react';
-import './Video.css';
-import PlayVideo from '../../components/PlayVideo/PlayVideo';
-import Recommended from '../../components/Recommended/Recommended';
-import { useParams } from 'react-router-dom';
-import axios from 'axios';
+import React, { useState, useEffect } from 'react'
+import './Video.css'
+import PlayVideo from '../../components/PlayVideo/PlayVideo'
+import Recommended from '../../components/Recommended/Recommended'
+import { useParams } from 'react-router-dom'
+import axios from 'axios'
 
 const Video = () => {
-  const { videoId } = useParams();
-  const API_KEY = process.env.REACT_APP_YOUTUBE_API_KEY;
+  const { videoId } = useParams()
+  const API_KEY = process.env.REACT_APP_YOUTUBE_API_KEY
 
-  const [video, setVideo] = useState(null);
-  const [channelId, setChannelId] = useState(null); // Store channel ID
-  const [channelData, setChannelData] = useState(null); // Store channel data
-  const [comments, setComments] = useState([]); // variables to store comments data
+  const [video, setVideo] = useState(null)
+  const [channelId, setChannelId] = useState(null) // Store channel ID
+  const [channelData, setChannelData] = useState(null) // Store channel data
+  const [comments, setComments] = useState([]) // variables to store comments data
 
   useEffect(() => {
     // Fetch video details
@@ -24,17 +24,17 @@ const Video = () => {
             id: videoId,
             key: API_KEY,
           },
-        });
-        const videoData = response.data.items[0];
-        setVideo(videoData);
-        setChannelId(videoData.snippet.channelId); // Store the channel ID for later use
+        })
+        const videoData = response.data.items[0]
+        setVideo(videoData)
+        setChannelId(videoData.snippet.channelId) // Store the channel ID for later use
       } catch (error) {
-        console.error('Error fetching video data:', error);
+        console.error('Error fetching video data:', error)
       }
-    };
+    }
 
-    fetchVideoDetails();
-  }, [videoId, API_KEY]);
+    fetchVideoDetails()
+  }, [videoId, API_KEY])
 
   useEffect(() => {
     if (channelId) {
@@ -47,16 +47,16 @@ const Video = () => {
               id: channelId,
               key: API_KEY,
             },
-          });
-          setChannelData(response.data.items[0]); // Set the channel data
+          })
+          setChannelData(response.data.items[0]) // Set the channel data
         } catch (error) {
-          console.error('Error fetching channel data:', error);
+          console.error('Error fetching channel data:', error)
         }
-      };
+      }
 
-      fetchChannelDetails();
+      fetchChannelDetails()
     }
-  }, [channelId, API_KEY]);
+  }, [channelId, API_KEY])
 
   // fetch comments
   useEffect(() => {
@@ -70,44 +70,44 @@ const Video = () => {
             key: API_KEY,
             maxResults: 10,
           },
-        });
-        setComments(response.data.items);
+        })
+        setComments(response.data.items)
       } catch (error) {
-        console.error('Error fetching comments:', error);
+        console.error('Error fetching comments:', error)
       }
-    };
+    }
 
-    fetchComments();
-  }, [videoId, API_KEY]);
+    fetchComments()
+  }, [videoId, API_KEY])
 
   if (!video || !channelData) {
-    return <p>Loading...</p>;
+    return <p>Loading...</p>
   }
 
   
 
   // Destructure the video and channel objects
-  const { snippet: videoSnippet, statistics: videoStatistics } = video;
-  const { snippet: channelSnippet, statistics: channelStatistics } = channelData;
+  const { snippet: videoSnippet, statistics: videoStatistics } = video
+  const { snippet: channelSnippet, statistics: channelStatistics } = channelData
 
   /*
    Variables about a particular video that can be shared
    with other components and be reused 
   */
-  const channelTitle = videoSnippet.channelTitle;
-  const description = videoSnippet.description;
-  const title = videoSnippet.title;
-  const publishedAt = videoSnippet.publishedAt;
+  const channelTitle = videoSnippet.channelTitle
+  const description = videoSnippet.description
+  const title = videoSnippet.title
+  const publishedAt = videoSnippet.publishedAt
 
   // Video statistics
-  const commentCount = videoStatistics.commentCount;
-  const favoriteCount = videoStatistics.favoriteCount;
-  const likeCount = videoStatistics.likeCount;
-  const viewCount = videoStatistics.viewCount;
+  const commentCount = videoStatistics.commentCount
+  const favoriteCount = videoStatistics.favoriteCount
+  const likeCount = videoStatistics.likeCount
+  const viewCount = videoStatistics.viewCount
 
   // Channel details
-  const channelDescription = channelSnippet.description;
-  const subscriberCount = channelStatistics.subscriberCount;
+  const channelDescription = channelSnippet.description
+  const subscriberCount = channelStatistics.subscriberCount
   const channelLogo = channelSnippet.thumbnails.default.url
 
   return (
@@ -129,7 +129,7 @@ const Video = () => {
       />
       <Recommended />
     </div>
-  );
+  )
 }
 
-export default Video;
+export default Video

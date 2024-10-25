@@ -1,14 +1,14 @@
-import './Recommended.css';
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import axios from 'axios';
-import moment from 'moment';
+import './Recommended.css'
+import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
+import axios from 'axios'
+import moment from 'moment'
 
 const Recommended = () => {
-  const category = "RD Congo musique congolaise sport rd congo politique rd congo";
-  const API_KEY = process.env.REACT_APP_YOUTUBE_API_KEY;
+  const category = "RD Congo musique congolaise sport rd congo politique rd congo"
+  const API_KEY = process.env.REACT_APP_YOUTUBE_API_KEY
 
-  const [data, setData] = useState([]);
+  const [data, setData] = useState([])
 
   useEffect(() => {
     const fetchVideos = async () => {
@@ -22,15 +22,15 @@ const Recommended = () => {
             key: API_KEY,
             maxResults: 40,
           },
-        });
-        setData(response.data.items);
+        })
+        setData(response.data.items)
       } catch (error) {
-        console.error('Error fetching YouTube data:', error);
+        console.error('Error fetching YouTube data:', error)
       }
-    };
+    }
 
-    fetchVideos();
-  }, [category, API_KEY]);
+    fetchVideos()
+  }, [category, API_KEY])
 
   return (
     <div className="recommended">
@@ -40,12 +40,12 @@ const Recommended = () => {
           <div className="vid-info">
             <h4>{video.snippet.title}</h4>
             <p>{video.snippet.channelTitle}</p>
-            <p>15k vues &bull; {moment(video.snippet.publishedAt).fromNow()}</p>
+            <p>15k vues &bull {moment(video.snippet.publishedAt).fromNow()}</p>
           </div>
         </Link>
       ))}
     </div>
-  );
-};
+  )
+}
 
-export default Recommended;
+export default Recommended

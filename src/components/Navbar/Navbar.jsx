@@ -1,19 +1,32 @@
-import React from 'react'
-import './Navbar.css'
-import menu_icon from '../../assets/menu.png'
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import './Navbar.css';
+import menu_icon from '../../assets/menu.png';
+import search from '../../assets/search.png';
+import uplaod_icon from '../../assets/upload.png';
+import more_icon from '../../assets/more.png';
+import notification_icon from '../../assets/notification.png';
+import profile_icon from '../../assets/jack.png';
+import voice_icon from '../../assets/voice.png'
+import voice3 from '../../assets/voice3.png'
 
-import search from '../../assets/search.png'
-import uplaod_icon from '../../assets/upload.png'
-import more_icon from'../../assets/more.png'
-import notification_icon from '../../assets/notification.png'
-import profile_icon from '../../assets/jack.png'
-import log2 from '../../assets/log2.png'
+const Navbar = ({ setSidebar }) => {
+    const navigate = useNavigate();
+    const [searchQuery, setSearchQuery] = useState('');
 
+    // Handle input change
+    const handleInputChange = (e) => {
+        setSearchQuery(e.target.value);
+    };
 
+    // Handle Enter key to trigger search
+    const handleKeyPress = (e) => {
+        if (e.key === 'Enter' && searchQuery.trim()) {
+            navigate(`/search/${searchQuery}`);
+            setSearchQuery('');
+        }
+    };
 
-const Navbar = (props) => {
-    const setSidebar = props.setSidebar;
-  
     return (
         <nav className="flex-div"> 
             <div className="nav-left flex-div">
@@ -38,10 +51,21 @@ const Navbar = (props) => {
 
             <div className="nav-middle flex-div">
                 <div className="search-box flex-div">
-                    <input type="text" name="search" placeholder="Search ... " />
+                    <input 
+                        type="text" 
+                        name="search" 
+                        placeholder="Search ... " 
+                        value={searchQuery} 
+                        onChange={handleInputChange} 
+                        onKeyPress={handleKeyPress} 
+                    />
                     <img src={search} alt="search" />
                 </div>
+                <div className='voice-search'>
+                <img src={voice_icon} alt="Voice search Icon"/>
             </div>
+            </div>
+            
 
             <div className="nav-right flex-div">
                 <img src={uplaod_icon} alt="upload" />
@@ -50,7 +74,7 @@ const Navbar = (props) => {
                 <img src={profile_icon} alt="profile" className="user-icon" />
             </div>
         </nav>
-    )
-}
+    );
+};
 
 export default Navbar;

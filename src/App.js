@@ -1,24 +1,20 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
 import Navbar from './components/Navbar/Navbar';
-import { Routes,Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import Video from './pages/Video/Video';
 import Home from './pages/Home/Home';
-import { useState } from 'react';
 
 function App() {
-
-  const [sidebar,setSidebar] = useState(true)
-  
-
+  const [sidebar, setSidebar] = useState(true);
 
   return (
     <div>
-      <Navbar setSidebar={setSidebar}/>
+      <Navbar setSidebar={setSidebar} />
       <Routes>
-        <Route path='/' element={<Home sidebar={sidebar}/>}/>
-        <Route path='/video/:videoId' element={<Video/>}/>
+        <Route path="/" element={<Home sidebar={sidebar} />} />
+        <Route path="/video/:videoId" element={<Video />} />
+        <Route path="/search/:query" element={<Home sidebar={sidebar} />} /> {/* Route for search results */}
       </Routes>
     </div>
   );
