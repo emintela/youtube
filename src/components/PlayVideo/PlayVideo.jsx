@@ -10,20 +10,22 @@ import user_profile from '../../assets/user_profile.jpg'; // Corrected variable 
 import { useParams } from 'react-router-dom';
 import moment from 'moment';
 
-const PlayVideo = (props) => {
-  
- const videoId = props.videoId
- const channelTitle = props.channelTitle
- const description = props.description
- const title = props.title
- const publishedAt = props.publishedAt
- const commentCount = props.commentCount
- const favoriteCount = props.favoriteCount
- const likeCount = props.likeCount
- const viewCount = props.viewCount
- const channelDescription= props.channelDescription
- const subscriberCount= props.subscriberCount
- const channelLogo = props.channelLogo
+const PlayVideo = ({ 
+  videoId,
+  channelTitle,
+  description,
+  title,
+  publishedAt,
+  commentCount,
+  favoriteCount,
+  likeCount,
+  viewCount,
+  channelDescription,
+  subscriberCount,
+  channelLogo,
+  comments 
+  // using props destructuring to pass all elements as props at once
+}) => {
 
   
   return (
@@ -68,61 +70,39 @@ const PlayVideo = (props) => {
           <p>{description.slice(0,400)}...</p>
            <hr/>
           <h4>{commentCount} Comments</h4>
-          <div className="comment">
-            <img src={user_profile} alt="profile"/>
-            <div>
-              <h3>Eddy Mintela <span>1 day ago</span></h3>
-              <p>
-                What Rice and others are missing is that they didn't score in great part because Villa played hard as a team and because of Emery's tactics. Don't forget we hit the post 3 times too, so we had chances too.
-                We won that match and forced Arsenal into playing the way they did.
-              </p>
-              <div className="comment-action">
-                <img src={like} alt="like"/>
-                <span>27</span>
-                <img src={dislike} alt="dislike"/>
-                <span>4</span>
+          
+       
+        {comments.length > 0 ? (
+          comments.map((comment) => (
+            <div key={comment.id} className="comment">
+              <img
+                src={comment.snippet.topLevelComment.snippet.authorProfileImageUrl || user_profile}
+                alt="profile"
+              />
+              <div>
+                <h3>
+                  {comment.snippet.topLevelComment.snippet.authorDisplayName}{' '}
+                  <span>{new Date(comment.snippet.topLevelComment.snippet.publishedAt).toLocaleDateString()}</span>
+                </h3>
+                <p>{comment.snippet.topLevelComment.snippet.textDisplay}</p>
+                <div className="comment-action">
+                  <img src={like} alt="like" />
+                  <span>{comment.snippet.topLevelComment.snippet.likeCount}</span>
+                  <img src={dislike} alt="dislike" />
+                  <span>{}</span> 
+                </div>
               </div>
             </div>
-          </div>
-
-          <div className="comment">
-            <img src={user_profile} alt="profile"/>
-            <div>
-              <h3>Eddy Mintela <span>1 day ago</span></h3>
-              <p>
-                What Rice and others are missing is that they didn't score in great part because Villa played hard as a team and because of Emery's tactics. Don't forget we hit the post 3 times too, so we had chances too.
-                We won that match and forced Arsenal into playing the way they did.
-              </p>
-              <div className="comment-action">
-                <img src={like} alt="like"/>
-                <span>27</span>
-                <img src={dislike} alt="dislike"/>
-                <span>4</span>
-              </div>
-            </div>
-          </div>
-
-          <div className="comment">
-            <img src={user_profile} alt="profile"/>
-            <div>
-              <h3>Eddy Mintela <span>1 day ago</span></h3>
-              <p>
-                What Rice and others are missing is that they didn't score in great part because Villa played hard as a team and because of Emery's tactics. Don't forget we hit the post 3 times too, so we had chances too.
-                We won that match and forced Arsenal into playing the way they did.
-              </p>
-              <div className="comment-action">
-                <img src={like} alt="like"/>
-                <span>27</span>
-                <img src={dislike} alt="dislike"/>
-                <span>4</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        
-        
+          ))
+        ) : (
+          <p>No comments available.</p>
+        )}
       </div>
+ </div>
+
+        
+        
+    
     
     
   );

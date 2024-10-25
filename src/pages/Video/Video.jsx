@@ -12,6 +12,7 @@ const Video = () => {
   const [video, setVideo] = useState(null);
   const [channelId, setChannelId] = useState(null); // Store channel ID
   const [channelData, setChannelData] = useState(null); // Store channel data
+  const [comments, setComments] = useState([]); // variables to store comments data
 
   useEffect(() => {
     // Fetch video details
@@ -57,13 +58,33 @@ const Video = () => {
     }
   }, [channelId, API_KEY]);
 
-  if (!video) {
-    return <p>Loading video details...</p>;
+  // fetch comments
+  useEffect(() => {
+    // Fetch comments for the video
+    const fetchComments = async () => {
+      try {
+        const response = await axios.get('https://www.googleapis.com/youtube/v3/commentThreads', {
+          params: {
+            part: 'snippet',
+            videoId: videoId,
+            key: API_KEY,
+            maxResults: 10,
+          },
+        });
+        setComments(response.data.items);
+      } catch (error) {
+        console.error('Error fetching comments:', error);
+      }
+    };
+
+    fetchComments();
+  }, [videoId, API_KEY]);
+
+  if (!video || !channelData) {
+    return <p>Loading...</p>;
   }
 
-  if (!channelData) {
-    return <p>Loading channel details...</p>;
-  }
+  
 
   // Destructure the video and channel objects
   const { snippet: videoSnippet, statistics: videoStatistics } = video;
@@ -104,6 +125,7 @@ const Video = () => {
         channelDescription={channelDescription}
         subscriberCount={subscriberCount}
         channelLogo = {channelLogo}
+        comments={comments}
       />
       <Recommended />
     </div>

@@ -25,7 +25,7 @@ const Feed = (props) => {
             hl: 'fr',             // Set French as the default language
             regionCode: 'FR', 
             key: API_KEY,    
-            maxResults: 100000    
+            maxResults: 40   
           }
         });
         setData(response.data.items);  

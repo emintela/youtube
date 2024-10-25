@@ -1,100 +1,51 @@
-import React from 'react'
-import './Recommended.css'
-import thumbnail1 from '../../assets/thumbnail1.png'
-import thumbnail2 from '../../assets/thumbnail2.png'
-import thumbnail3 from '../../assets/thumbnail3.png'
-import thumbnail4 from '../../assets/thumbnail4.png'
-import thumbnail5 from '../../assets/thumbnail5.png'
-import thumbnail6 from '../../assets/thumbnail6.png'
-import thumbnail7 from '../../assets/thumbnail7.png'
-import thumbnail8 from '../../assets/thumbnail8.png'
+import './Recommended.css';
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import axios from 'axios';
+import moment from 'moment';
 
 const Recommended = () => {
+  const category = "RD Congo musique congolaise sport rd congo politique rd congo";
+  const API_KEY = process.env.REACT_APP_YOUTUBE_API_KEY;
+
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    const fetchVideos = async () => {
+      try {
+        const response = await axios.get('https://www.googleapis.com/youtube/v3/search', {
+          params: {
+            part: 'snippet',
+            q: category,
+            hl: 'fr',
+            regionCode: 'FR',
+            key: API_KEY,
+            maxResults: 40,
+          },
+        });
+        setData(response.data.items);
+      } catch (error) {
+        console.error('Error fetching YouTube data:', error);
+      }
+    };
+
+    fetchVideos();
+  }, [category, API_KEY]);
+
   return (
     <div className="recommended">
-        <div className="side-video-list">
-            <img src={thumbnail1} alt="thumb"/>
-            <div className="vid-info">
-                <h4>Best Video to learn web dev</h4>
-                <p>GreetStack</p>
-                <p> 15k views &bull; 2 days ago...</p>
-
-            </div>
-
-        </div>
-        <div className="side-video-list">
-            <img src={thumbnail1} alt="thumb"/>
-            <div className="vid-info">
-                <h4>Best Video to learn web dev</h4>
-                <p>GreetStack</p>
-                <p> 15k views &bull; 2 days ago...</p>
-
-            </div>
-
-        </div>
-        <div className="side-video-list">
-            <img src={thumbnail2} alt="thumb"/>
-            <div className="vid-info">
-                <h4>Best Video to learn web dev</h4>
-                <p>GreetStack</p>
-                <p> 15k views &bull; 2 days ago...</p>
-
-            </div>
-
-        </div>
-        <div className="side-video-list">
-            <img src={thumbnail3} alt="thumb"/>
-            <div className="vid-info">
-                <h4>Best Video to learn web dev</h4>
-                <p>GreetStack</p>
-                <p> 15k views &bull; 2 days ago...</p>
-
-            </div>
-
-        </div>
-        <div className="side-video-list">
-            <img src={thumbnail4} alt="thumb"/>
-            <div className="vid-info">
-                <h4>Best Video to learn web dev</h4>
-                <p>GreetStack</p>
-                <p> 15k views &bull; 2 days ago...</p>
-
-            </div>
-
-        </div>
-        <div className="side-video-list">
-            <img src={thumbnail5} alt="thumb"/>
-            <div className="vid-info">
-                <h4>Best Video to learn web dev</h4>
-                <p>GreetStack</p>
-                <p> 15k views &bull; 2 days ago...</p>
-
-            </div>
-
-        </div>
-        <div className="side-video-list">
-            <img src={thumbnail6} alt="thumb"/>
-            <div className="vid-info">
-                <h4>Best Video to learn web dev</h4>
-                <p>GreetStack</p>
-                <p> 15k views &bull; 2 days ago...</p>
-
-            </div>
-
-        </div>
-        <div className="side-video-list">
-            <img src={thumbnail7} alt="thumb"/>
-            <div className="vid-info">
-                <h4>Best Video to learn web dev</h4>
-                <p>GreetStack</p>
-                <p> 15k views &bull; 2 days ago...</p>
-
-            </div>
-
-        </div>
-
+      {data.map((video) => (
+        <Link to={`/video/${video.id.videoId}`} className="side-video-list" key={video.id.videoId}>
+          <img src={video.snippet.thumbnails.medium.url} alt="thumbnail" />
+          <div className="vid-info">
+            <h4>{video.snippet.title}</h4>
+            <p>{video.snippet.channelTitle}</p>
+            <p>15k vues &bull; {moment(video.snippet.publishedAt).fromNow()}</p>
+          </div>
+        </Link>
+      ))}
     </div>
-  )
-}
+  );
+};
 
-export default Recommended
+export default Recommended;
