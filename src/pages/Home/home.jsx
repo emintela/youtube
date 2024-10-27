@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Sidebar from '../../components/Sidebar/Sidebar';
 import Feed from '../../components/Feed/Feed';
-import './Home.css';
+import './Home.css'; //
 
 const Home = (props) => {
   const [category, setCategory] = useState("Congo RDC Lingala Politique Congolaise");
