@@ -16,3 +16,16 @@
         padding-right: 5%;
     }
 }
+
+
+/* Additional adjustments for small screens (max-width: 600px) */
+@media (max-width: 600px) {
+    .play-container {
+        padding-left: 3%;
+        padding-right: 3%;
+        padding-top: 15px;
+        padding-bottom: 15px;
+        flex-direction: column; /* Stack items vertically on small screens */
+        align-items: center; /* Center align items for better layout on mobile */
+    }
+}

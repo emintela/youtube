@@ -108,3 +108,50 @@
     }
 }
 
+@media (max-width: 600px) {
+
+    .bottom-bar {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background: radial-gradient(circle at 10% 20%, rgb(59, 149, 237) 0%, rgb(7, 91, 173) 100%);
+        padding: 10px 0;
+        box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);
+        z-index: 1000;
+        color: lightgray;
+    }
+
+    /* Smaller icon adjustments for very small screens */
+    .sidebar {
+        display: none;
+    }
+    .small-sidebar
+
+    
+    
+
+    /* Feed adjustments for scrolling underneath the sidebar */
+    .feed {
+        margin-left: 0;
+        padding-bottom: 50px; /* Extra space for bottom bar */
+        position: relative;
+        z-index: 1; /* Feed goes below the sidebar */
+        overflow-y: scroll;
+    }
+    .bottom-bar img {
+        width: 24px;
+        margin: 0 5px;
+    }
+    
+    .subscribed-list{
+        display: none;
+    }
+
+    .subscribed-list h1{
+        display: none;
+    }
+}

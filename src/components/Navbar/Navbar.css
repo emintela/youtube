@@ -118,3 +118,19 @@ nav {
     }
     
 }
+
+/* Further adjustments for smaller screens, e.g., phones */
+@media (max-width: 600px) {
+    
+    
+    .nav-left h1 {
+        font-size: 16px; /* Reduce title size */
+    }
+    
+    .voice-search img {
+        display: none; /* Hide voice icon on very small screens */
+    }
+    h1 {
+        font-size: 0.5rem; /* Smaller font size for screens 600px or less */
+    }
+}

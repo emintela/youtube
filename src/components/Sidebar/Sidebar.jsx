@@ -17,7 +17,8 @@ import game from '../../assets/game_icon.png'
 const Sidebar = ({ sidebar, category, setCategory }) => {
   
   return (
-    <div className={sidebar ? 'sidebar' : 'small-sidebar'}>
+    <>
+      <div className={sidebar ? 'sidebar' : 'small-sidebar'}>
       <div className='shortcut-links'>
         <div className="side-link" 
         onClick={() => {setCategory('Congo RDC Lingala Politique Congolaise')
@@ -87,15 +88,18 @@ const Sidebar = ({ sidebar, category, setCategory }) => {
         </div>
       </div>
 
-      {/* Sticky bottom bar on small devices */}
-      <div className="bottom-bar">
+      
+    </div>
+    {/* Sticky bottom bar on small devices */}
+    <div className="bottom-bar">
         <img src={home} alt="home" onClick={() => setCategory('Congo RDC Lingala Politique Congolaise')} />
         <img src={game} alt="game" onClick={() => setCategory('Politique RDC politique congolaise lingala francais')} />
         <img src={sports} alt="sports" onClick={() => setCategory('Sports RD Congo football leopards basketball judo')} />
         <img src={music} alt="music" onClick={() => setCategory('musique rd congo rumba ngwasuma fally ferree koffi jb werra')} />
         <img src={news} alt="news" onClick={() => setCategory('News Locale RDCongo kinshasa katanga')} />
       </div>
-    </div>
+    </>
+    
   )
 }
 

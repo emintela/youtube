@@ -51,3 +51,22 @@
 
    
 }
+
+/* For screens up to 600px here i'm targetting iPhone SE and smaller devices */
+@media (max-width: 600px) {
+    .feed {
+        grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
+        margin-left: 0; /* Remove margin when sidebar is collapsed */
+    }
+
+    .sidebar,
+    .small-sidebar {
+        width: 80%; /* Make sidebar take most of the screen on small devices */
+        z-index: 10;
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        overflow-y: auto;
+    }
+}
