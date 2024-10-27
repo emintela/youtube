@@ -15,42 +15,47 @@ import cameron from '../../assets/cameron.png'
 import game from '../../assets/game_icon.png'
 
 const Sidebar = ({ sidebar, category, setCategory }) => {
+  
   return (
     <div className={sidebar ? 'sidebar' : 'small-sidebar'}>
       <div className='shortcut-links'>
-        <div className={`side-link ${category === 0 ? 'active' : ''}`} onClick={() => setCategory('Congo RDC Lingala Politique Congolaise')}>
+        <div className="side-link" 
+        onClick={() => {setCategory('Congo RDC Lingala Politique Congolaise')
+          console.log("clicked category",category)
+          }
+          }>
           <img src={home} alt='' />
           <p>Accueil</p>
         </div>
-        <div className={`side-link ${category === 20 ? 'active' : ''}`} onClick={() => setCategory('Politique RDC politique congolaise lingala francais')}>
+        <div className="side-link" onClick={() => setCategory('Politique RDC politique congolaise lingala francais')}>
           <img src={game} alt='' />
           <p>Politique</p>
         </div>
-        <div className={`side-link ${category === 2 ? 'active' : ''}`} onClick={() => setCategory('Sports RD Congo football leopards basketball judo')}>
+        <div className="side-link" onClick={() => setCategory('Sports RD Congo football leopards basketball judo')}>
           <img src={sports} alt='' />
           <p>Sports</p>
         </div>
-        <div className={`side-link ${category === 17 ? 'active' : ''}`} onClick={() => setCategory('musique rd congo rumba ngwasuma fally ferree koffi jb werra')}>
+        <div className="side-link" onClick={() => setCategory('musique rd congo rumba ngwasuma fally ferree koffi jb werra')}>
           <img src={music} alt='' />
           <p>Musique</p>
         </div>
-        <div className={`side-link ${category === 24 ? 'active' : ''}`} onClick={() => setCategory('Theatre RD Congo Humour RD Congo')}>
+        <div className="side-link" onClick={() => setCategory('Theatre RD Congo Humour RD Congo')}>
           <img src={entertainment} alt='' />
           <p>Theatre</p>
         </div>
-        <div className={`side-link ${category === 28 ? 'active' : ''}`} onClick={() => setCategory('Predications RD Congo Pasteurs RD Congo Eglise RD Congo')}>
+        <div className="side-link" onClick={() => setCategory('Predications RD Congo Pasteurs RD Congo Eglise RD Congo')}>
           <img src={tech} alt='' />
           <p>Eglises</p>
         </div>
-        <div className={`side-link ${category === 10 ? 'active' : ''}`} onClick={() => setCategory('Musique chretienne RD Congo')}>
+        <div className="side-link" onClick={() => setCategory('Musique chretienne RD Congo')}>
           <img src={music} alt='' />
           <p>Zik Religieuse</p>
         </div>
-        <div className={`side-link ${category === 22 ? 'active' : ''}`} onClick={() => setCategory(22)}>
+        <div className="side-link" onClick={() => setCategory(22)}>
           <img src={blogs} alt='' />
           <p>Blogs</p>
         </div>
-        <div className={`side-link ${category === 25 ? 'active' : ''}`} onClick={() => setCategory('News Locale RDCongo kinshasa katanga')}>
+        <div className="side-link" onClick={() => setCategory('News Locale RDCongo kinshasa katanga')}>
           <img src={news} alt='' />
           <p>Divers</p>
         </div>
